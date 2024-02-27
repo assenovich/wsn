@@ -12,9 +12,9 @@ RestartSec=15s
 User=root
 Group=root
 
-Environment=WSN_DEVICE="tap42"
-Environment=WSN_SERVER="wss://.../wsn"
-Environment=WSN_SECRET="..."
+Environment=WSN_DEVICE=tap42
+Environment=WSN_SERVER=wss://.../wsn
+Environment=WSN_SECRET=...
 
 ExecStart=/bin/bash wsn-client.bash
 

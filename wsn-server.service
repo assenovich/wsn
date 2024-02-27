@@ -12,8 +12,8 @@ RestartSec=1s
 User=user
 Group=user
 
-Environment=WSN_LISTEN="127.0.0.1:8079"
-Environment=WSN_SECRET="..."
+Environment=WSN_LISTEN=127.0.0.1:8079
+Environment=WSN_SECRET=...
 
 ExecStart=/home/user/wsn/server/wsn-server
 
