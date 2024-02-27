@@ -269,16 +269,7 @@ try {
 	webSocket.open(QUrl{QString::fromUtf8(wsnServer)});
 
 	QSocketNotifier tapNotifier{ tapHandle, QSocketNotifier::Read };
-	QObject::connect(&tapNotifier, &QSocketNotifier::activated, &app, [&mtu, &state, &tapHandle, &webSocket](QSocketDescriptor, QSocketNotifier::Type activationEvent){
-		if (activationEvent == QSocketNotifier::Write) {
-			return;
-		}
-		if (activationEvent == QSocketNotifier::Exception) {
-			std::cerr << "QSocketNotifier::Exception" << std::endl;
-			QCoreApplication::quit();
-			return;
-		}
-
+	QObject::connect(&tapNotifier, &QSocketNotifier::activated, &app, [&mtu, &state, &tapHandle, &webSocket]{
 		const int maxFrameSize = mtu + 14;
 		QByteArray buffer;
 		buffer.resize(maxFrameSize + 256);
