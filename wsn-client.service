@@ -16,7 +16,7 @@ Environment=WSN_DEVICE="tap42"
 Environment=WSN_SERVER="wss://.../wsn"
 Environment=WSN_SECRET="..."
 
-ExecStart=/usr/bin/bash wsn-client.bash
+ExecStart=/bin/bash wsn-client.bash
 
 [Install]
 WantedBy=multi-user.target

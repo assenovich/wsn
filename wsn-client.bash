@@ -1,11 +1,10 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 set -euxo pipefail
 script_dir=$(dirname "${BASH_SOURCE[0]}")
 script_dir=$(cd "${script_dir}" &>/dev/null && pwd -P)
 
 modprobe tun
-modprobe tap
 
 if [ ! -e /dev/net ]; then
   mkdir /dev/net

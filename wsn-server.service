@@ -5,17 +5,17 @@ Requires=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/ubuntu/wsn/server
+WorkingDirectory=/home/user/wsn/server
 Restart=always
 RestartSec=1s
 
-User=ubuntu
-Group=ubuntu
+User=user
+Group=user
 
 Environment=WSN_LISTEN="127.0.0.1:8079"
 Environment=WSN_SECRET="..."
 
-ExecStart=/home/ubuntu/wsn/server/wsn-server
+ExecStart=/home/user/wsn/server/wsn-server
 
 [Install]
 WantedBy=multi-user.target
