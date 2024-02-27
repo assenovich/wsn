@@ -157,6 +157,8 @@ func challengeGenerator(challenges chan<- []byte) {
 
 func createClientHandler(secret string, challenges <-chan []byte, clients chan<- Client) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("connected from:", r.Header.Get("X-Forwarded-For"))
+
 		upgrader := websocket.Upgrader{}
 		conn, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
