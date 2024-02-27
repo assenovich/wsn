@@ -19,14 +19,16 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/ioctl.h>
 #include <linux/if.h>
 #include <linux/if_tun.h>
 #include <netinet/in.h>
-#include <sys/ioctl.h>
 
 namespace {
 
-constexpr auto kWebSocketPingPeriod = std::chrono::seconds(15);
+constexpr int kWebSocketPingPeriodMs = 15 * 1000;
 
 } // namespace
 
@@ -215,7 +217,7 @@ try {
 		std::cout << "websocket disconnected" << std::endl;
 		QCoreApplication::quit();
 	}, Qt::QueuedConnection);
-	QObject::connect(&webSocket, qOverload<QAbstractSocket::SocketError>(&QWebSocket::error), &app, [&state](QAbstractSocket::SocketError error){
+	QObject::connect(&webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), &app, [&state](QAbstractSocket::SocketError error){
 		if (state == State::DISCONNECTED) {
 			return;
 		}
@@ -304,7 +306,7 @@ try {
 	QObject::connect(&pingTimer, &QTimer::timeout, &webSocket, [&webSocket]{
 		webSocket.ping();
 	}, Qt::QueuedConnection);
-	pingTimer.start(kWebSocketPingPeriod); // да, запускаем до получения connected-state
+	pingTimer.start(kWebSocketPingPeriodMs); // да, запускаем до получения connected-state
 
 	return app.exec();
 }
