@@ -6,6 +6,6 @@ Kind=tap
 MultiQueue=no
 PacketInfo=no
 VNetHeader=no
-KeepCarrier=no
+KeepCarrier=yes
 User=user
 Group=user
