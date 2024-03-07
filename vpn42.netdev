@@ -1,0 +1,11 @@
+[NetDev]
+Name=tap42
+Kind=tap
+
+[Tap]
+MultiQueue=no
+PacketInfo=no
+VNetHeader=no
+KeepCarrier=no
+User=user
+Group=user

@@ -21,8 +21,8 @@ if [ -e "/dev/net/${WSN_DEVICE}" ]; then
   rm "/dev/net/${WSN_DEVICE}"
 fi
 ip tuntap add dev "${WSN_DEVICE}" mode tap
-ip   addr add dev "${WSN_DEVICE}" 192.168.42.201/24 broadcast 192.168.42.255
-ip   link set dev "${WSN_DEVICE}" mtu 1400
+ip   addr add dev "${WSN_DEVICE}" 192.168.42.1/24 broadcast 192.168.42.255
+ip   link set dev "${WSN_DEVICE}" mtu 1404
 ip   link set dev "${WSN_DEVICE}" up
 
 exec "${script_dir}/wsn-client"
