@@ -1,6 +1,6 @@
-module github.com/assenovich/wsn
+module github.com/assenovich/wsn/server
 
-go 1.18
+go 1.22.1
 
 require github.com/gorilla/websocket v1.5.1
 
