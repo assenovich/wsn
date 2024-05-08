@@ -31,11 +31,13 @@ type Frame struct {
 }
 
 func macFromBytes(b []byte) uint64 {
-	var mac uint64 = 0
-	for i := 0; i < 6; i += 1 {
-		mac = (mac << 8) | uint64(uint8(b[i]))
-	}
-	return mac
+	return uint64(0) |
+		(uint64(uint8(b[0])) << 40) |
+		(uint64(uint8(b[1])) << 32) |
+		(uint64(uint8(b[2])) << 24) |
+		(uint64(uint8(b[3])) << 16) |
+		(uint64(uint8(b[4])) << 8) |
+		(uint64(uint8(b[5])))
 }
 
 func macToString(mac uint64) string {
@@ -219,8 +221,10 @@ func main() {
 		}
 		return value
 	}
-	secret := getEnv("WSN_SECRET")
 	listen := getEnv("WSN_LISTEN")
+	secret := getEnv("WSN_SECRET")
+
+	log.Println("WSN_LISTEN:", listen)
 
 	clients := make(chan Client, ClientQueueSize)
 	go router(clients)
