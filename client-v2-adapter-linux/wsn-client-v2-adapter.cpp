@@ -289,11 +289,11 @@ try {
 	const SysHandle tapHandle = tap_open(wsnDevice.c_str());
 	const int             mtu = get_if_mtu(wsnDevice.c_str());
 	const std::uint64_t   mac = get_if_hw_addr(wsnDevice.c_str());
-	const std::uint32_t    ip = get_if_ip_addr(wsnDevice.c_str());
+//	const std::uint32_t    ip = get_if_ip_addr(wsnDevice.c_str());
 
 	std::cout << "mtu: " << mtu << std::endl;
 	std::cout << "mac: " << mac_to_string(mac) << std::endl;
-	std::cout << " ip: " << ip_to_string(ip) << std::endl;
+//	std::cout << " ip: " << ip_to_string(ip) << std::endl;
 
 	const SysHandle sfd{ ::socket(AF_INET, SOCK_STREAM, 0) };
 	const ::sockaddr_in saddr = prepare_sockaddr_in(wsnPort);
