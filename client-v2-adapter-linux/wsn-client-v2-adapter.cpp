@@ -306,9 +306,9 @@ try {
 
 	static std::atomic<int> client{0}; // static to be accessible in signal handlers
 
-	signal(SIGPIPE, SIG_IGN);
-	std::signal(SIGINT,  +[](int){ client.store(-1); });
-	std::signal(SIGTERM, +[](int){ client.store(-1); });
+//	signal(SIGPIPE, SIG_IGN);
+//	std::signal(SIGINT,  +[](int){ client.store(-1); });
+//	std::signal(SIGTERM, +[](int){ client.store(-1); });
 
 	std::thread tx_thread{[&tapHandle]{
 		std::vector<char> buffer;
